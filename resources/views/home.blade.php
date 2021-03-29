@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
                 <h2 class="ml-3" >User : {{$user->username}}</h2>
                 <div class="card-body">
-                    <img src="{{asset('images/avatar/' . $user->avatar)}}" alt="{{$user->username}}" width="50px">
+                <x-userprofile.avatar :user="$user" />
                     fullname = {{$user->fullname}}
                     bio: {{$user->bio}}
                     @if (session('status'))

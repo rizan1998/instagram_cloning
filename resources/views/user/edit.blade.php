@@ -16,8 +16,11 @@
                             <x-form.input label="Username" name="username" :object="$user" />
                             <x-form.input label="Fullname" name="fullname"  :object="$user"/>
                             <x-form.input label="Biodata" name="bio" :object="$user" />
+
                             <div class="form-group row">
-                                <label for="avatar" class="col-md-4 col-from-label text-md-right">
+                                <label for="avatar" class="col-md-4 col-form-label text-md-right">
+                                    Foto profile
+                                </label>
                                     <div class="col-md-6">
                                         <input type="file" name="avatar" id="avatar" >
                                         @if ($errors->has('avatar'))
@@ -28,8 +31,6 @@
                                             </span>                                            
                                         @endif
                                     </div>
-                                </label>
-
                             </div>
     
                             <x-btn.submitbtn text="Update Profile"/>
