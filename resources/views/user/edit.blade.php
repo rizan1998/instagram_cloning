@@ -9,15 +9,28 @@
                         Update Profile <strong>{{$user->username}}</strong>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/user/update">
+                        <form method="POST" action="/user/edit" enctype="multipart/form-data">
                             @csrf
+                            @method('put');
         
                             <x-form.input label="Username" name="username" :object="$user" />
-                            <x-form.input label="E-Mail Address" name="email" type="email" :object="$user"/>
+                            <x-form.input label="Fullname" name="fullname"  :object="$user"/>
                             <x-form.input label="Biodata" name="bio" :object="$user" />
-                            <p>
-                                todo:avatar
-                            </p>
+                            <div class="form-group row">
+                                <label for="avatar" class="col-md-4 col-from-label text-md-right">
+                                    <div class="col-md-6">
+                                        <input type="file" name="avatar" id="avatar" >
+                                        @if ($errors->has('avatar'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>
+                                                    {{$errors->first('avatar')}}
+                                                </strong>
+                                            </span>                                            
+                                        @endif
+                                    </div>
+                                </label>
+
+                            </div>
     
                             <x-btn.submitbtn text="Update Profile"/>
                         </form>
