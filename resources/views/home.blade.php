@@ -6,18 +6,25 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-                <h2 class="ml-3" >User : {{$user->username}}</h2>
                 <div class="card-body">
-                <x-userprofile.avatar :user="$user" />
-                    fullname = {{$user->fullname}}
-                    bio: {{$user->bio}}
+                    <div>
+                        <x-userprofile.avatar :user="$user" />
+                         <b class="ml-1" >{{$user->username}}</b> 
+                    </div>
+                    <div class="mt-1" >
+                        fullname = {{$user->fullname}}
+                    </div>
+                    <div>
+                        bio: {{$user->bio}}
+                    </div>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    <div >
+                        <a href="/posts/create">Upload Foto</a>
+                    </div>
                 </div>
             </div>
         </div>
