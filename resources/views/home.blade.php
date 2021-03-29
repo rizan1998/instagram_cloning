@@ -25,6 +25,9 @@
                     <div >
                         <a href="/posts/create">Upload Foto</a>
                     </div>
+                    @foreach ($user->posts as $post)
+                        {{$post->caption}}
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -38,7 +38,7 @@ class PostController extends Controller
     {
         $user = Auth::user();
         $request->validate([
-            'caption' => "required|max:100|min:3",
+            'caption' => "max:100",
             'image' => 'required|image|mimes:png,jpg'
         ]);
 
