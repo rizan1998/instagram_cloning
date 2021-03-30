@@ -94,6 +94,9 @@ class PostController extends Controller
             'caption' => 'max:100'
         ]);
 
+        if($post->id != Auth::user()->id)
+            abort(403);
+
         $post->update([
             'caption' => $request->caption
         ]);

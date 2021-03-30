@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -11,12 +12,16 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+route::get('@{username}', [UserController::class, 'show']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+route::middleware('auth')->group(function(){
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 //user
 Route::get('/user/edit', [UserController::class, 'edit']);
 Route::put('/user/edit', [UserController::class, 'update']);
-
 //post 
 Route::resource('posts', PostController::class);
+
+});
+

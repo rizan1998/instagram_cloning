@@ -10,4 +10,4 @@
 
 @endphp
 
-<img src="{{$avatar_url}}" class="rounded-circle"  alt="{{$user->username}}" width="60px" height="60px" >
+<img src="{{$avatar_url}}" class="rounded-circle"  alt="{{$user->username}}" width="100px" height="100px" >
