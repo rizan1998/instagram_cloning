@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('timeline.post');
+        return view('post.create');
     }
 
     /**
@@ -74,9 +74,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -86,9 +87,18 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $request->validate([
+            'caption' => 'max:100'
+        ]);
+
+        $post->update([
+            'caption' => $request->caption
+        ]);
+
+        return redirect('/home');
     }
 
     /**

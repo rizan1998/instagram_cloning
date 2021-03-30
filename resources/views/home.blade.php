@@ -26,7 +26,10 @@
                         <a href="/posts/create">Upload Foto</a>
                     </div>
                     @foreach ($user->posts as $post)
-                        {{$post->caption}}
+                    <li>
+                        <img src="{{asset('images/posts/'.$post->image)}}" width="200" height="200" alt="{{$post->image}}">
+                        <a href="/posts/{{$post->id}}/edit">Edit</a>
+                    </li>
                     @endforeach
                 </div>
             </div>
