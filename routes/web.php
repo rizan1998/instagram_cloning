@@ -13,6 +13,7 @@ Route::get('/', function () {
 
 Auth::routes();
 route::get('@{username}', [UserController::class, 'show']);
+route::get('/follow/{user_id}', [UserController::class, 'follow']);
 
 route::middleware('auth')->group(function(){
 

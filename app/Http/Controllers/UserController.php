@@ -49,8 +49,19 @@ class UserController extends Controller
         return view('user.profile', compact('user'));
     }
 
-    public function follow(){
+    public function follow($following_id){
         $user = Auth::user();
-        dd($user->following);
+
+        if($user->following->contains($following_id)){
+            $user->following()->detach($following_id);
+            $message = ['status' => 'FOLLOW'];
+        }
+        else{
+            $user->following()->attach($following_id);
+            $message = ['status' => 'UNFOLLOW'];
+        }
+
+        // RETURN RESPONSE JSON 
+        return response()->json($message);
     }
 }

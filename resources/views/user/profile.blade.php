@@ -21,6 +21,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
+
+                    @if(Auth::user()->id == $user->id)
+                        <a href="/user/edit">Edit Profile</a>
+                    @else
+                        <a href="/follow/{{$user->id}}">
+                            {{ (Auth::user()->following->contains($user->id) ? 'unfollow' : 'follow')}}
+                        </a>
+                    @endif
+
                     @foreach ($user->posts as $post)
                     <li>
                         <img src="{{asset('images/posts/'.$post->image)}}" width="200" height="200" alt="{{$post->image}}">
