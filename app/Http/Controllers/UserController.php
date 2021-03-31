@@ -48,4 +48,9 @@ class UserController extends Controller
 
         return view('user.profile', compact('user'));
     }
+
+    public function follow(){
+        $user = Auth::user();
+        dd($user->following);
+    }
 }
