@@ -54,11 +54,11 @@ class UserController extends Controller
 
         if($user->following->contains($following_id)){
             $user->following()->detach($following_id);
-            $message = ['status' => 'FOLLOW'];
+            $message = ['status' => 'UNFOLLOW'];
         }
         else{
             $user->following()->attach($following_id);
-            $message = ['status' => 'UNFOLLOW'];
+            $message = ['status' => 'FOLLOW'];
         }
 
         // RETURN RESPONSE JSON 

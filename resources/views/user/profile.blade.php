@@ -25,10 +25,21 @@
                     @if(Auth::user()->id == $user->id)
                         <a href="/user/edit">Edit Profile</a>
                     @else
-                        <a href="/follow/{{$user->id}}">
+                        <button class="btn btn-primary btn-sm"  onclick="follow({{$user->id}}, this)">
                             {{ (Auth::user()->following->contains($user->id) ? 'unfollow' : 'follow')}}
-                        </a>
+                        </button>
                     @endif
+
+                    <script>
+                        function follow(id, el){
+                            fetch('/follow/' + id)
+                                .then(response => response.json())
+                                // .then(data => console.log(data.status));
+                                .then(data => {
+                                    el.innerText = (data.status == 'FOLLOW') ? 'unfollow':'follow' ;
+                                });
+                        }
+                    </script>
 
                     @foreach ($user->posts as $post)
                     <li>

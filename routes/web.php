@@ -12,10 +12,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-route::get('@{username}', [UserController::class, 'show']);
-route::get('/follow/{user_id}', [UserController::class, 'follow']);
 
 route::middleware('auth')->group(function(){
+    
+route::get('@{username}', [UserController::class, 'show']);
+route::get('/follow/{user_id}', [UserController::class, 'follow']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 //user
