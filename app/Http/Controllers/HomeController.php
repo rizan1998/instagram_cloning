@@ -13,11 +13,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
+   
     /**
      * Show the application dashboard.
      *
@@ -37,5 +33,11 @@ class HomeController extends Controller
 
         $posts = Post::whereIn('user_id', $id_list)->orderBy('created_at', 'desc')->get();
         return view('home', compact('posts'));
+    }
+
+    public function search(Request $request){
+        $querySearch = $request->input('query');
+        $posts = Post::where('caption', 'like', '%'.$querySearch.'%')->orderBy('created_at', 'desc')->get();
+        return view('home', compact('posts', 'querySearch'));
     }
 }

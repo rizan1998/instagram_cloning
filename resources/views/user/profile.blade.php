@@ -21,14 +21,16 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    @if(Auth::user()->id == $user->id)
-                        <a href="/user/edit">Edit Profile</a>
-                    @else
-                        <button class="btn btn-primary btn-sm"  onclick="follow({{$user->id}}, this)">
-                            {{ (Auth::user()->following->contains($user->id) ? 'unfollow' : 'follow')}}
-                        </button>
+                    @if (Auth::check())
+                        @if(Auth::user()->id == $user->id)
+                            <a href="/user/edit">Edit Profile</a>
+                        @else
+                            <button class="btn btn-primary btn-sm"  onclick="follow({{$user->id}}, this)">
+                                {{ (Auth::user()->following->contains($user->id) ? 'unfollow' : 'follow')}}
+                            </button>
+                        @endif
                     @endif
+                
 
                     <script>
                         function follow(id, el){
@@ -44,8 +46,10 @@
                     @foreach ($user->posts as $post)
                     <li>
                         <img src="{{asset('images/posts/'.$post->image)}}" width="200" height="200" alt="{{$post->image}}">
-                        @if (Auth::user()->id == $user->id)
-                            <a href="/posts/{{$post->id}}/edit">Edit</a>
+                        @if (Auth::check())
+                            @if (Auth::user()->id == $user->id)
+                                <a href="/posts/{{$post->id}}/edit">Edit</a>
+                            @endif
                         @endif
                     </li>
                     @endforeach

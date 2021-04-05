@@ -14,18 +14,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-route::middleware('auth')->group(function(){
-    
+route::get('/search', [HomeController::class, 'search']);
 route::get('@{username}', [UserController::class, 'show']);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-//user
-Route::get('/user/edit', [UserController::class, 'edit']);
-Route::put('/user/edit', [UserController::class, 'update']);
-//post 
-Route::resource('posts', PostController::class);
+route::middleware('auth')->group(function(){
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    
+    //user
+    Route::get('/user/edit', [UserController::class, 'edit']);
+    Route::put('/user/edit', [UserController::class, 'update']);
+    //post 
+    Route::resource('posts', PostController::class);
 
-route::get('/follow/{user_id}', [UserController::class, 'follow']);
-route::get('/like/{post_id}', [LikeController::class, 'toggle']);
+    route::get('/follow/{user_id}', [UserController::class, 'follow']);
+    route::get('/like/{post_id}', [LikeController::class, 'toggle']);
 });
 
