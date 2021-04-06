@@ -23,6 +23,9 @@
                                 <a href="/{{'@'.$comment->user->username}}">
                                     {{'@'.$comment->user->username}}
                                 </a>
+                                @if (Auth::user()->id == $comment->user_id)
+                                    <a href="/comment/{{$comment->id}}/edit">Edit</a>
+                                @endif
                             </p>
                     @endforeach
                 </div>
