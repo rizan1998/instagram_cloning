@@ -10,6 +10,12 @@ class Post extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    // protected $with = ['user', 'likes'];
+
+    // comment
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 
     // relasi user
     public function user(){

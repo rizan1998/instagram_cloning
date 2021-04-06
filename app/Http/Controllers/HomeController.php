@@ -31,13 +31,13 @@ class HomeController extends Controller
         $id_list[] = $user->id;
         // dd($id_list);
 
-        $posts = Post::whereIn('user_id', $id_list)->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user', 'likes')->whereIn('user_id', $id_list)->orderBy('created_at', 'desc')->get();
         return view('home', compact('posts'));
     }
 
     public function search(Request $request){
         $querySearch = $request->input('query');
-        $posts = Post::where('caption', 'like', '%'.$querySearch.'%')->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user')->where('caption', 'like', '%'.$querySearch.'%')->orderBy('created_at', 'desc')->get();
         return view('home', compact('posts', 'querySearch'));
     }
 }
