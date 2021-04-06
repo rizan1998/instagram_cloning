@@ -63,9 +63,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        // lazy eager loading karena agak lambat saat load
+        $post->load('comments.user');
+        return view('post.show', compact('post'));
     }
 
     /**

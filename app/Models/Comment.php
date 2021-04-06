@@ -11,7 +11,7 @@ class Comment extends Model
     protected $guarded = ['id'];
 
     public function post(){
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class)->orderBy('created_at', 'asc');
     }
 
     public function user(){

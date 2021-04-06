@@ -32,7 +32,7 @@ route::middleware('auth')->group(function(){
     // like
     route::get('/like/{post_id}', [LikeController::class, 'toggle']);
     // comment
-    route::post('/comment/{post_id}', [CommentController::class, 'post']);
+    route::post('/comment/{post_id}', [CommentController::class, 'store']);
     route::get('/comment/{comment_id}/edit', [CommentController::class, 'edit']);
     route::put('/comment/{comment_id}', [CommentController::class, 'update']);
     route::delete('/comment/{comment_id}', [CommentController::class, 'delete']);
