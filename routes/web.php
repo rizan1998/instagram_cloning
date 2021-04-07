@@ -31,10 +31,16 @@ route::middleware('auth')->group(function(){
     route::get('/follow/{user_id}', [UserController::class, 'follow']);
     // like
     route::get('/like/{post_id}', [LikeController::class, 'toggle']);
+
+    // comment menggunakan nested resources
+    Route::resource('post.comment', CommentController::class)->shallow();  
+    // jadi id nya bisa {post_id} atau {comment_id}
+    //post.comment ini berdasarkan relasi table dan boleh singular atau plular
+
     // comment
-    route::post('/comment/{post_id}', [CommentController::class, 'store']);
-    route::get('/comment/{comment_id}/edit', [CommentController::class, 'edit']);
-    route::put('/comment/{comment_id}', [CommentController::class, 'update']);
-    route::delete('/comment/{comment_id}', [CommentController::class, 'delete']);
+    // route::post('/comment/{post_id}', [CommentController::class, 'store']);
+    // route::get('/comment/{comment_id}/edit', [CommentController::class, 'edit']);
+    // route::put('/comment/{comment_id}', [CommentController::class, 'update']);
+    // route::get('/comment/{comment_id}/delete', [CommentController::class, 'delete']);
 });
 

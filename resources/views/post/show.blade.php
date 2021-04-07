@@ -13,7 +13,7 @@
                         </div>
                     </div>
 
-                    <form action="/comment/{{$post->id}}" method="post" >
+                    <form action="/post/{{$post->id}}/comment" method="post" >
                         @csrf
                         <x-form.textarea name="body" label="Komentar" />
                         <button type="submit" class="btn btn-primary  btn-block">Post Komentar</button>
@@ -25,6 +25,16 @@
                                 </a>
                                 @if (Auth::user()->id == $comment->user_id)
                                     <a href="/comment/{{$comment->id}}/edit">Edit</a>
+                                    <a class="color-primary" 
+                                    onclick="event.preventDefault();
+                                                  document.getElementById('hapuskomentar').submit();">
+                                    Hapus
+                                    </a>
+
+                                    <form id="hapuskomentar" action="/comment/{{$comment->id}}" method="POST" class="d-none">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                 @endif
                             </p>
                     @endforeach

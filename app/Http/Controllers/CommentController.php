@@ -43,4 +43,16 @@ class CommentController extends Controller
         ]);
         return redirect('/posts/'.$comment->post_id);
     }
+
+    public function destroy($comment_id){
+        $comment = Comment::findOrFail($comment_id);
+        $user=Auth::user();
+
+        if($comment->user_id != $user->id)
+        abort(403);
+
+        $comment->delete();
+        // return redirect()->back();
+        return redirect('/posts/'.$comment->post_id);
+    }
 }
