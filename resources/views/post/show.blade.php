@@ -30,12 +30,14 @@
                                                   document.getElementById('hapuskomentar').submit();">
                                     Hapus
                                     </a>
-
                                     <form id="hapuskomentar" action="/comment/{{$comment->id}}" method="POST" class="d-none">
                                         @csrf
                                         @method('DELETE')
                                     </form>
                                 @endif
+                                <button class="btn btn-primary btn-sm"  onclick="like({{$comment->id}} , 'COMMENT', 'comment')" id="comment-btn-{{$comment->id}}" >
+                                    {{ ($comment->is_liked() ? 'unlike' : 'like')}}
+                                </button>
                             </p>
                     @endforeach
                 </div>

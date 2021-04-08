@@ -4,7 +4,7 @@
     <a href="{{'@'.$post->user->username}}">{{'@'.$post->user->username}}</a>
     
     @if (Auth::check())    
-    <button class="btn btn-primary btn-sm"  onclick="like({{$post->id}})" id="post-btn-{{$post->id}}" >
+    <button class="btn btn-primary btn-sm"  onclick="like({{$post->id, 'POST', 'post'}})" id="post-btn-{{$post->id}}" >
         {{ ($post->is_liked() ? 'unlike' : 'like')}}
     </button>
     <a href="/posts/{{$post->id}}" class="btn btn-sm btn-primary">Komentar</a>

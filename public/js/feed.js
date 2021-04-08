@@ -13,9 +13,9 @@ document.querySelectorAll(".captions").forEach(function (el) {
 });
 
 // like tombol
-function like(id) {
-    const el = document.getElementById("post-btn-" + id);
-    fetch("/like/" + id)
+function like(id, type = "POST", id_el) {
+    const el = document.getElementById(id_el + "-btn-" + id);
+    fetch("/like/" + type + "/" + id)
         .then((response) => response.json())
         // .then(data => console.log(data.status));
         .then((data) => {

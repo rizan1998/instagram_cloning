@@ -30,7 +30,7 @@ route::middleware('auth')->group(function(){
     // follow
     route::get('/follow/{user_id}', [UserController::class, 'follow']);
     // like
-    route::get('/like/{post_id}', [LikeController::class, 'toggle']);
+    route::get('/like/{type}/{post_id}', [LikeController::class, 'toggle']);
 
     // comment menggunakan nested resources
     Route::resource('post.comment', CommentController::class)->shallow();  

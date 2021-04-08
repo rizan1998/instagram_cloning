@@ -13,5 +13,7 @@ class Like extends Model
     protected $guarded = ['id'];
     protected $table = "likes";
 
- 
+    public function likeable(){
+        return $this->morphTo();
+    }
 }

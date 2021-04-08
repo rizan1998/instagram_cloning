@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\LikesTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, LikesTrait;
     protected $guarded = ['id'];
     // protected $with = ['user', 'likes'];
 
@@ -23,13 +24,10 @@ class Post extends Model
     }
 
     // likes post
-    public function likes(){
-        return $this->hasMany('App\Models\Like');
-    }
+    // public function likes(){
+    //     return $this->hasMany('App\Models\Like');
+    // }
+    // like yang sebelumya, struktur table user_id,post_id  
 
-    public function is_liked(){
-        // like disini mengacu pada function yang sebelumnya ditulis
-        // count() akan menghasilkan return true
-        return $this->likes->where('user_id', Auth::user()->id )->count();
-    }
+   
 }
