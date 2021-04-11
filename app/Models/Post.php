@@ -15,7 +15,7 @@ class Post extends Model
 
     // comment
     public function comments(){
-        return $this->hasMany(Comment::class)->orderBy('created_at', 'desc');
+        return $this->hasMany(Comment::class)->withCount('likes')->orderBy('created_at', 'desc');
     }
 
     // relasi user

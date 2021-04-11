@@ -1,12 +1,13 @@
 <div class="mb-3" >
     <img src="{{asset('images/posts/'.$post->image)}}" width="200" height="200" alt="{{$post->image}}" ondblclick="like({{$post->id}})">
-    <p class='captions' >{{$post->caption}}</p>
+    <p class='captions' >{{$post->caption}}</p> 
     <a href="{{'@'.$post->user->username}}">{{'@'.$post->user->username}}</a>
     
     @if (Auth::check())    
-    <button class="btn btn-primary btn-sm"  onclick="like({{$post->id, 'POST', 'post'}})" id="post-btn-{{$post->id}}" >
+    <button class="btn btn-primary btn-sm"  onclick="like({{$post->id}}, 'POST', 'post')" id="post-btn-{{$post->id}}" >
         {{ ($post->is_liked() ? 'unlike' : 'like')}}
     </button>
+    <span class="total_like" id="post-likescount-{{$post->id}}" >{{$post->likes_count}}</span>
     <a href="/posts/{{$post->id}}" class="btn btn-sm btn-primary">Komentar</a>
     @endif
 

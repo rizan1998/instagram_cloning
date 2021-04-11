@@ -38,6 +38,7 @@
                                 <button class="btn btn-primary btn-sm"  onclick="like({{$comment->id}} , 'COMMENT', 'comment')" id="comment-btn-{{$comment->id}}" >
                                     {{ ($comment->is_liked() ? 'unlike' : 'like')}}
                                 </button>
+                                <span class="total_likes" id="comment-likescount-{{$comment->id}}">{{$comment->likes_count}}</span>
                             </p>
                     @endforeach
                 </div>

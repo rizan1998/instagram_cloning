@@ -15,11 +15,23 @@ document.querySelectorAll(".captions").forEach(function (el) {
 // like tombol
 function like(id, type = "POST", id_el) {
     const el = document.getElementById(id_el + "-btn-" + id);
+    let likesCount = document.getElementById(id_el + "-likescount-" + id);
+
     fetch("/like/" + type + "/" + id)
         .then((response) => response.json())
         // .then(data => console.log(data.status));
         .then((data) => {
             console.log(data.status);
-            el.innerText = data.status == "LIKE" ? "unlike" : "like";
+            // el.innerText = data.status == "LIKE" ? "unlike" : "like";
+            if (data.status == "LIKE") {
+                currentCount = parseInt(likesCount.innerHTML) + 1;
+                el.innerText = "unlike";
+                // parseInt diubah dulu menjadi int
+            } else {
+                currentCount = parseInt(likesCount.innerHTML) - 1;
+                el.innerText = "like";
+            }
+
+            likesCount.innerHTML = currentCount;
         });
 }

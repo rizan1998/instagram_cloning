@@ -67,7 +67,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         // lazy eager loading karena agak lambat saat load
-        $post->load('comments.user');
+        $post->load('comments.user')->loadCount('likes');
         return view('post.show', compact('post'));
     }
 
