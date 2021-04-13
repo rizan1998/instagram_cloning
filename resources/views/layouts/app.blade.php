@@ -63,13 +63,8 @@
                             <a class="nav-link {{ Request::is('@'.Auth::user()->username)? "active":"" }} 
                             {{ Request::is('@'.Auth::user()->username.'/*')? "active":"" }} {{ Request::is('user/edit')? "active":"" }}  " href="/{{'@'.Auth::user()->username}}">{{ Auth::user()->username }}</a>
                         </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/@{{Auth::user()->username}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -78,8 +73,8 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                </div>
-                            </li>
+                        </li>
+                           
                         @endguest
                         <li class="nav-item dropdown">
                         

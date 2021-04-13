@@ -34,4 +34,6 @@ function like(id, type = "POST", id_el) {
 
             likesCount.innerHTML = currentCount;
         });
+    // karena diganti menggunakan link maka cegah link aktf
+    return false;
 }
