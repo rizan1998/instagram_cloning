@@ -1,5 +1,5 @@
 <div class="mb-3" >
-    <img src="{{asset('images/posts/'.$post->image)}}" width="100%" height="auto" alt="{{$post->image}}" ondblclick="like({{$post->id}})">
+    <img src="{{asset('images/posts/'.$post->image)}}" width="100%" height="auto" alt="{{$post->image}}" ondblclick="like({{$post->id}}, 'POST', 'post')">
     <p class="mb-0">
         <a href="{{'@'.$post->user->username}}">{{'@'.$post->user->username}}</a>
         <span class='captions' >
@@ -17,7 +17,10 @@
     <a class="text-dark"  onclick="like({{$post->id}}, 'POST', 'post')" id="post-btn-{{$post->id}}" >
         {{ ($post->is_liked() ? 'unlike' : 'like')}}
     </a>
-    <a href="/posts/{{$post->id}}" class="text-dark">Komentar</a>
+        @isset($isShow)
+        @else
+            <a href="/posts/{{$post->id}}" class="text-dark">Komentar</a>
+        @endisset
     @endif
 
 </div>
