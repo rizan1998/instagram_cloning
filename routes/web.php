@@ -46,5 +46,6 @@ route::middleware('auth')->group(function(){
     // nontification
     Route::get('/notification', [UserController::class, 'notification']);
     Route::get('/notification/seen', [UserController::class, 'notificationSeed']);
+    Route::get('/notification/count', [UserController::class, 'notificationCount']);
 });
 

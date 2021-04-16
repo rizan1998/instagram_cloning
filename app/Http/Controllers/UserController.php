@@ -80,4 +80,9 @@ class UserController extends Controller
         Notification::where('user_id', $user->id)->update(['seen' => true]);
         return ['msg' => 'success'];
     }
+
+    public function notificationCount(){
+        $total = Auth::user()->notifications()->where('seen', 0)->count();
+        return ['total' => $total];
+    }
 }

@@ -65,7 +65,16 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('notification')? "active":"" }} 
-                            {{ Request::is('notification'.'/*')? "active":"" }}" href="/notification">Notifs</a>
+                            {{ Request::is('notification'.'/*')? "active":"" }}" href="/notification">Notifs <small id="notif-count" class="badge badge-danger" ></small></a>
+                            
+                            <script>
+                                fetch('/notification/count')
+                                .then(Response => Response.json())
+                                .then(data => {
+                                    console.log(data.total)
+                                    document.getElementById('notif-count').innerText = parseInt(data.total)
+                                }).catch(err => {console.log(err)});
+                            </script>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"
