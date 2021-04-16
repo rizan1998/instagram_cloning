@@ -13,7 +13,7 @@
                         </div>
                     </div>
 
-                    <form action="/post/{{$post->id}}/comment" method="post" >
+                    <form action="/{{$post->id}}/comment" method="post" >
                         @csrf
                         <x-form.textarea-simple :object="$post" name="body"/>
                         <button type="submit" class="btn btn-primary  btn-block">Post Komentar</button>

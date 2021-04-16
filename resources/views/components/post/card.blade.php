@@ -1,7 +1,12 @@
 <div class="mb-3" >
+    <p>
+        <x-userprofile.avatar :user="$post->user" size="32" />
+        <a href="{{'@'.$post->user->username}}">{{'@'.$post->user->username}}</a>  
+    </p>
+      
     <img src="{{asset('images/posts/'.$post->image)}}" width="100%" height="auto" alt="{{$post->image}}" ondblclick="like({{$post->id}}, 'POST', 'post')">
     <p class="mb-0">
-        <a href="{{'@'.$post->user->username}}">{{'@'.$post->user->username}}</a>
+       
         <span class='captions' >
             {{$post->caption}}
         </span>
@@ -22,5 +27,6 @@
             <a href="/posts/{{$post->id}}" class="text-dark">Komentar</a>
         @endisset
     @endif
+    <hr>
 
 </div>
