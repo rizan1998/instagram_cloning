@@ -64,4 +64,11 @@ class UserController extends Controller
         // RETURN RESPONSE JSON 
         return response()->json($message);
     }
+
+    public function notification(){
+        $user = Auth::user();
+        $notifs = $user->notifications;
+
+        return view('user.notification', compact('notifs'));
+    }
 }

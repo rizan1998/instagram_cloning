@@ -42,5 +42,8 @@ route::middleware('auth')->group(function(){
     // route::get('/comment/{comment_id}/edit', [CommentController::class, 'edit']);
     // route::put('/comment/{comment_id}', [CommentController::class, 'update']);
     // route::get('/comment/{comment_id}/delete', [CommentController::class, 'delete']);
+
+    // nontification
+    Route::get('/notification', [UserController::class, 'notification']);
 });
 

@@ -59,4 +59,9 @@ class User extends Authenticatable
             User::class, 'follows', 'follower_id', 'following_id'
         );
     }
+
+    // user nontification
+    public function notifications(){
+        return $this->hasMany(Notification::class);
+    }
 }

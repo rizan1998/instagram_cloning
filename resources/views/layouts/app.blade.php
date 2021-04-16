@@ -64,6 +64,10 @@
                             {{ Request::is('@'.Auth::user()->username.'/*')? "active":"" }} {{ Request::is('user/edit')? "active":"" }}  " href="/{{'@'.Auth::user()->username}}">{{ Auth::user()->username }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{ Request::is('notification')? "active":"" }} 
+                            {{ Request::is('notification'.'/*')? "active":"" }}" href="/notification">Notifs</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
