@@ -16,6 +16,8 @@
                     <div>
                         {{$user->bio}}
                     </div>
+                    <p>Following: {{$user->following->count()}}</p>
+                    <p>Follower: {{$user->follower->count()}}</p>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}

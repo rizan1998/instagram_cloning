@@ -49,3 +49,4 @@ route::middleware('auth')->group(function(){
     Route::get('/notification/count', [UserController::class, 'notificationCount']);
 });
 
+    route::get('/loadmore/{time}', [HomeController::class, 'loadmore']);

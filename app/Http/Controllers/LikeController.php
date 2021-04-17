@@ -67,7 +67,9 @@ class LikeController extends Controller
         if($user->id != $target_id){
             Notification::where('user_id', $target_id)//pemilik postingan
             ->where('post_id', $post_id)
-            ->where('message', 'like', '%likes%')->delete();
+            ->where('message', 'like', '%likes%')->delete(); //untuk like komentar bisa menggunakan
+            //where message, like, %commented% karena jika likes maka kedua like dan post
+            //dapat terhapus jika dihapus salah satunya
         }
     }
 }
