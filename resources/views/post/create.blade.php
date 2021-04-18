@@ -14,7 +14,7 @@
                             Image
                         </label>
                             <div class="col-md-6">
-                                <input type="file" name="image" id="image" >
+                                <input type="file" name="image" onchange="preview()">
                                 {{-- @if ($errors->has('image'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>
@@ -25,11 +25,23 @@
                                 @error('image')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
+                                  
                             </div>
                         </div>
                         <x-form.textarea name="caption" label="Your Caption" />
+
+                        <div class="text-center my-2">
+                            <img src="" width="100%" height="auto"  id="previewImg" >
+                        </div>
+                       
                         <button type="submit" class="btn btn-primary  btn-block">Post!</button>
+                        <script>
+                            function preview(){
+                                document.getElementById('previewImg').src = URL.createObjectURL(event.target.files[0]) 
+                            }
+                        </script>
                     </form>
+                   
                 </div>
             </div>
         </div>

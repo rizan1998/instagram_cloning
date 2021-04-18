@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+// use Carbon\Carbon;
 use Illuminate\Support\Carbon;
+use App\Models\Post;
+use App\Http\Resources\Post as PostReources;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,8 +56,9 @@ class HomeController extends Controller
 
         $posts = Post::with('user', 'likes')->withCount('likes')
         ->whereIn('user_id', $id_list)->orderBy('created_at', 'desc')
-        ->whereTime('created_at', '<', Carbon::parse((int)$time)) //untuk parse carbon harus bentuk int jangan string
-        ->take(3)->get(); 
-        return ['post' => $posts];
+        // jika ingin lebih spesifik bisa menggunakan where date/time contoh whereTime()
+        ->where('created_at', '<', Carbon::parse((int)$time)) //untuk parse carbon harus bentuk int jangan string
+        ->take(1)->get(); 
+        return ['post' => PostReources::collection($posts)];
     }
 }

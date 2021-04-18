@@ -6,11 +6,14 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">Feed @isset($querySearch) "{{$querySearch}}"@endisset</div>
-                <div class="card-body">
+                <div class="card-body" id="post-wrapper" >
                     {{-- forelse jika posts tidak ada --}}
                     @forelse ($posts as $post)
+                    <div>
                         <x-post.card :post="$post" />
                         <input type="hidden" class="post_time" value="{{strtotime($post->created_at)}}">
+                        <br>
+                    </div>
                     @empty
                     <p>Tidak ditemukan. </p>
                     @endforelse
